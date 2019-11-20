@@ -1,7 +1,7 @@
-const { JSDOM } = require('jsdom');
-const fs = require('fs');
-const path = require('path');
-const publicIndexHtml = fs.readFileSync(path.resolve(__dirname, '../../../public/index.html'), 'utf8');
+// const { JSDOM } = require('jsdom');
+// const fs = require('fs');
+// const path = require('path');
+// const publicIndexHtml = fs.readFileSync(path.resolve(__dirname, '../../../public/index.html'), 'utf8');
 
 //From : 
 //https://github.com/facebook/jest/blob/master/packages/jest-environment-jsdom/src/index.ts
@@ -26,13 +26,13 @@ class CustomEnvironment extends JSDOMEnvironment {
   async setup() {
     await super.setup();
 
-    const realDom = new JSDOM(publicIndexHtml);
-    this.global.window.document.head.innerHTML = realDom.window.document.head.innerHTML;
-    this.global.window.document.body.innerHTML = realDom.window.document.body.innerHTML;
+    // const realDom = new JSDOM(publicIndexHtml);
+    // this.global.window.document.head.innerHTML = realDom.window.document.head.innerHTML;
+    // this.global.window.document.body.innerHTML = realDom.window.document.body.innerHTML;
 
     //this works too..
-    //this.global.window.document.head.innerHTML = '<script></script>';
-    //this.global.window.document.body.innerHTML = '<div id="App"></div>';
+    this.global.window.document.head.innerHTML = '<script></script>';
+    this.global.window.document.body.innerHTML = '<div id="App"></div>';
 
     // Will trigger if docblock contains @my-custom-pragma my-pragma-value
     if (this.docblockPragmas['my-custom-pragma'] === 'my-pragma-value') {

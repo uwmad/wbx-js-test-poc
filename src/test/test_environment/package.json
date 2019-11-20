@@ -1,0 +1,9 @@
+{
+  "name": "configured-custom-test-environment",
+  "version": "1.0.0",
+  "description": "Custom Environment Setup for Jest + Webix",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

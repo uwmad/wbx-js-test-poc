@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import Dropdown from "../../Dropdown";
-//import waitForExpect from 'wait-for-expect';
+import waitForExpect from 'wait-for-expect';
 import webixFromSelector from '../test_utils/webixFromSelector';
 
 describe('Dropdown', () => {
@@ -76,7 +76,35 @@ describe('Dropdown', () => {
 
         });
 
-        
+        it('Triggers Callback on Webix Value Change', () => { //TEST PASSES But Snapshot isnt as Expected
+
+            const dropdown = webixFromSelector('.webix_control.webix_el_combo');
+            
+            dropdown.setValue('item2');
+            expect(onSelect).toHaveBeenCalledTimes(1);
+            expect(dropdown.getValue()).toBe('item2');
+            expect(dropdown.$view.innerHTML).toMatchSnapshot();  //still shows value="item3" ... the initial value
+
+        });
+
+
+        it('Triggers Callback on Click', async () => { //TEST FAILS, Click Events Dont seem to Register
+
+            const dropdown = webixFromSelector('.webix_control.webix_el_combo');
+  
+            document.querySelector('.webix_el_combo input').click();
+            document.querySelectorAll('.webix_popup .webix_list_item')[1].click();
+      
+           await waitForExpect(() => {
+
+              expect(onSelect).toHaveBeenCalledTimes(1);
+              expect(dropdown.getValue()).toBe('item2');
+
+           });
+
+        });
+
+
 
 
 

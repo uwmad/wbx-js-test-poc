@@ -51,11 +51,11 @@ describe('Dropdown', () => {
             expect(webix.ui).toHaveBeenCalledTimes(1); 
             //dropdown element
             const dropdown = webixFromSelector('.webix_control.webix_el_combo');
-            expect(dropdown.$view.innerHTML).toMatchSnapshot(); 
+            // expect(dropdown.$view.innerHTML).toMatchSnapshot();
 
             //popup select options element
             const selectlist = webixFromSelector('.webix_popup');
-            expect(selectlist.$view.innerHTML).toMatchSnapshot(); 
+            // expect(selectlist.$view.innerHTML).toMatchSnapshot();
 
         });
 
@@ -67,10 +67,10 @@ describe('Dropdown', () => {
                 expect(webix.ui).toHaveBeenCalledTimes(2); 
 
                 const dropdown = webixFromSelector('.webix_control.webix_el_combo');
-                expect(dropdown.$view.innerHTML).toMatchSnapshot(); 
+                // expect(dropdown.$view.innerHTML).toMatchSnapshot();
 
                 const selectlist = webixFromSelector('.webix_popup');
-                expect(selectlist.$view.innerHTML).toMatchSnapshot(); 
+                // expect(selectlist.$view.innerHTML).toMatchSnapshot();
 
             });
 
@@ -83,7 +83,7 @@ describe('Dropdown', () => {
             dropdown.setValue('item2');
             expect(onSelect).toHaveBeenCalledTimes(1);
             expect(dropdown.getValue()).toBe('item2');
-            expect(dropdown.$view.innerHTML).toMatchSnapshot();  //still shows value="item3" ... the initial value
+            // expect(dropdown.$view.innerHTML).toMatchSnapshot();  //still shows value="item3" ... the initial value
 
         });
 

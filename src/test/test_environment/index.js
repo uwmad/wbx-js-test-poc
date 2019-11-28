@@ -26,6 +26,29 @@ class CustomEnvironment extends JSDOMEnvironment {
   async setup() {
     await super.setup();
 
+
+
+    const window = this.global.window;
+    Object.defineProperties(window.HTMLElement.prototype, {
+      offsetLeft: {
+        get: function() { return parseFloat(window.getComputedStyle(this).marginLeft) || 0; }
+      },
+      offsetTop: {
+        get: function() { return parseFloat(window.getComputedStyle(this).marginTop) || 25; }
+      },
+      offsetHeight: {
+        get: function() { return parseFloat(window.getComputedStyle(this).height) || 612; }
+      },
+      offsetWidth: {
+        get: function() { return parseFloat(window.getComputedStyle(this).width) || 1680 }
+      },
+      clientWidth: {
+        get: function() { return parseFloat(window.getComputedStyle(this).height) || 1680; }
+      },
+      clientHeight: {
+        get: function() { return parseFloat(window.getComputedStyle(this).width) || 612 }
+      }
+    });
     // const realDom = new JSDOM(publicIndexHtml);
     // this.global.window.document.head.innerHTML = realDom.window.document.head.innerHTML;
     // this.global.window.document.body.innerHTML = realDom.window.document.body.innerHTML;

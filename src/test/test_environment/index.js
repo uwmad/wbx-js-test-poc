@@ -26,27 +26,31 @@ class CustomEnvironment extends JSDOMEnvironment {
   async setup() {
     await super.setup();
 
-
-
     const window = this.global.window;
     Object.defineProperties(window.HTMLElement.prototype, {
       offsetLeft: {
-        get: function() { return parseFloat(window.getComputedStyle(this).marginLeft) || 0; }
+        get: function() { return parseFloat(window.getComputedStyle(this).marginLeft) || 0; },
+        configurable : true,
       },
       offsetTop: {
-        get: function() { return parseFloat(window.getComputedStyle(this).marginTop) || 25; }
+        get: function() { return parseFloat(window.getComputedStyle(this).marginTop) || 25; },
+        configurable : true,
       },
       offsetHeight: {
-        get: function() { return parseFloat(window.getComputedStyle(this).height) || 612; }
+        get: function() { return parseFloat(window.getComputedStyle(this).height) || 612; },
+        configurable : true,
       },
       offsetWidth: {
-        get: function() { return parseFloat(window.getComputedStyle(this).width) || 1680 }
+        get: function() { return parseFloat(window.getComputedStyle(this).width) || 1680 },
+        configurable : true,
       },
       clientWidth: {
-        get: function() { return parseFloat(window.getComputedStyle(this).height) || 1680; }
+        get: function() { return parseFloat(window.getComputedStyle(this).height) || 1680; },
+        configurable : true,
       },
       clientHeight: {
-        get: function() { return parseFloat(window.getComputedStyle(this).width) || 612 }
+        get: function() { return parseFloat(window.getComputedStyle(this).width) || 612 },
+        configurable : true,
       }
     });
     // const realDom = new JSDOM(publicIndexHtml);
